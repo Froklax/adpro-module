@@ -38,4 +38,15 @@ public class ProductRepository {
         newProduct.setProductQuantity(product.getProductQuantity());
         return newProduct;
     }
+
+    public void deleteProduct(String productId) {
+        Iterator<Product> iterator = productData.iterator();
+        while (iterator.hasNext()) {
+            Product product = iterator.next();
+            if (product.getProductId().equals(productId)) {
+                iterator.remove();
+                break;
+            }
+        }
+    }
 }
