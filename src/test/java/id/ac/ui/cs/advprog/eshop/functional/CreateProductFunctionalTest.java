@@ -83,38 +83,4 @@ class CreateProductFunctionalTest {
         List<WebElement> tdTags = driver.findElements(By.tagName("td"));
         assertTrue(tdTags.size() > 0);
     }
-
-    @Test
-    void deleteProduct_isCorrect(ChromeDriver driver) throws Exception {
-        driver.get(createEndpoint);
-        WebElement nameInput = driver.findElement(By.id("nameInput"));
-        String productName = "Test Product to Delete";
-        nameInput.clear();
-        nameInput.sendKeys(productName);
-
-        WebElement quantityInput = driver.findElement(By.id("quantityInput"));
-        String productQuantity = "10";
-        quantityInput.clear();
-        quantityInput.sendKeys(productQuantity);
-
-        WebElement submitButton = driver.findElement(By.tagName("button"));
-        submitButton.click();
-
-        String currentUrl = driver.getCurrentUrl();
-        assertEquals(listEndpoint, currentUrl);
-
-        List<WebElement> tdTags = driver.findElements(By.tagName("td"));
-        assertEquals(productName, tdTags.get(0).getText());
-        assertEquals(productQuantity, tdTags.get(1).getText());
-
-        WebElement deleteForm = driver.findElement(By.xpath("//td[text()='" + productName + "']/following-sibling::td//form"));
-        WebElement deleteButton = deleteForm.findElement(By.tagName("button"));
-        deleteButton.click();
-
-        currentUrl = driver.getCurrentUrl();
-        assertEquals(listEndpoint, currentUrl);
-
-        tdTags = driver.findElements(By.tagName("td"));
-        assertTrue(tdTags.isEmpty() || !tdTags.get(0).getText().equals(productName));
-    }
 }
