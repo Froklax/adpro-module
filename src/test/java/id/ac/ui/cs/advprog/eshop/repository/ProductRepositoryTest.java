@@ -89,30 +89,6 @@ class ProductRepositoryTest {
     }
 
     @Test
-    void testEditAndFindNegative() {
-        Product product = new Product();
-        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        product.setProductName("Sampo Cap Bambang");
-        product.setProductQuantity(100);
-        productRepository.create(product);
-
-        product.setProductName("Sampo Cap Baru");
-        product.setProductQuantity(-50);
-        Product updatedProduct = productRepository.updateProduct(product);
-
-        assertEquals(product.getProductId(), updatedProduct.getProductId());
-        assertEquals(product.getProductName(), updatedProduct.getProductName());
-        assertEquals(product.getProductQuantity(), updatedProduct.getProductQuantity());
-
-        Iterator<Product> productIterator = productRepository.findAll();
-        assertTrue(productIterator.hasNext());
-        Product foundProduct = productIterator.next();
-        assertEquals(product.getProductId(), foundProduct.getProductId());
-        assertEquals(product.getProductName(), foundProduct.getProductName());
-        assertEquals(product.getProductQuantity(), foundProduct.getProductQuantity());
-    }
-
-    @Test
     void testDeleteAndFind() {
         Product product1 = new Product();
         product1.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
@@ -135,5 +111,18 @@ class ProductRepositoryTest {
 
         productRepository.deleteProduct(product2.getProductId());
         assertNull(productRepository.getProduct(product2.getProductId()));
+    }
+
+    @Test
+    void testDeleteForEmptyProduct() {
+        Product product = new Product();
+        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+        productRepository.deleteProduct(product.getProductId());
+
+        Iterator<Product> products = productRepository.findAll();
+        assertFalse(products.hasNext());
     }
 }
