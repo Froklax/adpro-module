@@ -1,0 +1,31 @@
+name: Build and deploy the application to Koyeb
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    concurrency:
+      group: "${{ github.ref_name }}"
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install and configure the Koyeb CLI
+        uses: koyeb-community/koyeb-actions@v2
+        with:
+          api_token: "${{ secrets.KOYEB_API_TOKEN }}"
+
+      - name: Build and deploy the application
+        uses: koyeb/action-git-deploy@v1
+        with:
+          app-name: java-${{ github.ref_name }}
+          git-builder: "buildpack"
+          git-run-command: "java -jar /opt/advshop/app.jar"
+          service-ports: "8080:http"
+          service-routes: "/:8080"
+          skip-cache: true
