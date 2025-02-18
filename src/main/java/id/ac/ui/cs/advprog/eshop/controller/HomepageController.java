@@ -11,6 +11,6 @@ public class HomepageController {
 
     @GetMapping
     public String homePage(Model model) {
-        return "homepage";
+        return "Homepage";
     }
 }
