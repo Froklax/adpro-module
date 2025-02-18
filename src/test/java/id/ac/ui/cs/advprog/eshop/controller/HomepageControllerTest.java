@@ -18,6 +18,6 @@ class HomepageControllerTest {
     void testHomePage() {
         Model model = mock(Model.class);
         String viewName = homepageController.homePage(model);
-        assertEquals("homepage", viewName);
+        assertEquals("Homepage", viewName);
     }
 }
