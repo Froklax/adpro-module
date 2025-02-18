@@ -125,4 +125,16 @@ class ProductRepositoryTest {
         Iterator<Product> products = productRepository.findAll();
         assertFalse(products.hasNext());
     }
+
+    @Test
+    void testDeleteNonExistentProduct() {
+        Product product = new Product();
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+
+        productRepository.getProduct(product.getProductId()).setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        productRepository.deleteProduct("fake-id");
+        assertNotNull(productRepository.getProduct("eb558e9f-1c39-460e-8860-71af6af63bd6"));
+    }
 }
