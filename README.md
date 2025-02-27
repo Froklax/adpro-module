@@ -72,10 +72,10 @@ Dengan `DIP`, saya mengganti dependensi langsung terhadap `CarServiceImpl` denga
 
 ### 2. Explain the advantages of applying SOLID principles to your project with examples.
 
-Dengan menerapkan prinsip SOLID, kode saya menjadi lebih mudah untuk dikelola dan diuji. Misalnya dengan menerapkan `SRP`, jika ada perubahan spesifik pada fitur `Car`, saya hanya perlu mengubah `CarController` tanpa harus menyentuh `ProductController`. Dengan `ISP`, setiap `interface` hanya memiliki _method_ yang benar-benar dibutuhkan oleh _class_ yang menggunakannya. Misalnya, `CarService` dan `ProductService` memiliki `interface` terpisah sehingga perubahan di satu _service_ tidak memengaruhi _service_ lainnya. Hal ini mengurangi ketergantungan yang tidak perlu dan membuat _project_ lebih terorganisir.
+Dengan menerapkan prinsip `SOLID`, kode saya menjadi lebih mudah untuk dikelola dan diuji. Misalnya dengan menerapkan `SRP`, jika ada perubahan spesifik pada fitur `Car`, saya hanya perlu mengubah `CarController` tanpa harus menyentuh `ProductController`. Dengan `ISP`, setiap `interface` hanya memiliki _method_ yang benar-benar dibutuhkan oleh _class_ yang menggunakannya. Misalnya, `CarService` dan `ProductService` memiliki `interface` terpisah sehingga perubahan di satu _service_ tidak memengaruhi _service_ lainnya. Hal ini mengurangi ketergantungan yang tidak perlu dan membuat _project_ lebih terorganisir.
 
 ### 3. Explain the disadvantages of not applying SOLID principles to your project with examples.
 
-
+Tanpa menerapkan prinsip `SOLID`, kode akan menjadi sulit untuk dikembangkan dan dikelola. Jika `CarController` tidak dipisahkan dari `ProductController`, maka setiap perubahan kecil pada salah satu bisa berdampak pada yang lain, meningkatkan kemungkinan muncul _bug_ dan _error_. Jika saya tetap menggunakan `CarServiceImpl` langsung di dalam `CarController`, maka setiap perubahan dalam implementasi _service_ akan mengharuskan saya memperbarui semua tempat di mana `CarServiceImpl` digunakan. Misalnya, jika ada perubahan besar dalam cara data `Car` disimpan, saya harus mengubah banyak bagian kode, yang bisa menyebabkan _error_ yang tidak terduga. Dengan menerapkan `SOLID`, perubahan dapat dilakukan dengan lebih aman dan terkontrol menurut saya.
 
 
