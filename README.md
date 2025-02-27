@@ -4,6 +4,7 @@ Link Deployment : https://missing-shrew-froklaxorg-d72833a5.koyeb.app/
 ### Fast Links
 - [Refleksi Module 1](#module-1---coding-standards)
 - [Refleksi Module 2](#module-2---cicd--devops)
+- [Refleksi Module 3](#module-3---maintainability--oo-principles)
 
 # Module 1 - Coding Standards
 
@@ -52,3 +53,29 @@ Melihat konfigurasi CI/CD yang ada, saya merasa bahwa implementasinya sudah meme
 ## Code Coverage
 
 ![image](https://github.com/user-attachments/assets/5506b594-7ab3-4255-b6c4-b431d9248b90)
+
+# Module 3 - Maintainability & OO Principles
+
+### 1. Explain what principles you apply to your project!
+
+Prinsip yang telah saya terapkan dalam project ini adalah _Single Responsibility Principle_ (SRP), _Open-Closed Principle_ (OCP), _Liskov Substitution Principle_ (LSP), _Interface Segregation Principle_ (ISP), dan _Dependency Inversion Principle_ (DIP).
+
+Dengan `SRP`, saya memisahkan `CarController` dari `ProductController`, sehingga setiap _class_ hanya memiliki satu tanggung jawab spesifik. `CarController` hanya menangani _request_ terkait `Car`, sedangkan `ProductController` hanya menangani _request_ untuk `Product`.
+
+Dengan `OCP`, saya memastikan bahwa _class_ dan _method_ yang dibuat bisa diperluas tanpa perlu mengubah kode yang sudah ada. Contohnya, saya menggunakan _interface_ `ProductService` sebagai dasar dari `ProductServiceImpl`, sehingga implementasi baru dapat ditambahkan tanpa mengubah struktur yang ada.
+
+Dalam `LSP`, saya memastikan bahwa bagian kode yang menggunakan _superclass_ tetap dapat berjalan meskipun diganti dengan subclassnya. Pada penggunaan `CarService` di `CarController` tidak bergantung pada implementasi spesifik `CarServiceImpl`, sehingga dapat digantikan dengan implementasi lain tanpa menyebabkan _error_.
+
+Penerapan `ISP` dapat dilihat pada pemisahan `interface` agar hanya mencakup _method_ yang benar-benar diperlukan oleh _class_ yang menggunakannya. Misalnya, jika ada fitur yang hanya digunakan oleh `CarService` tetapi tidak diperlukan di `ProductService`, maka tidak semua _method_ dipaksakan ada dalam satu `interface` besar.
+
+Dengan `DIP`, saya mengganti dependensi langsung terhadap `CarServiceImpl` dengan `CarService`, yaitu sebuah `interface`. Hal ini memastikan bahwa `CarController` tidak bergantung pada implementasi spesifik, tetapi pada abstraksi. Ini membuat kode lebih fleksibel untuk digantikan di masa depan.
+
+### 2. Explain the advantages of applying SOLID principles to your project with examples.
+
+Dengan menerapkan prinsip SOLID, kode saya menjadi lebih mudah untuk dikelola dan diuji. Misalnya dengan menerapkan `SRP`, jika ada perubahan spesifik pada fitur `Car`, saya hanya perlu mengubah `CarController` tanpa harus menyentuh `ProductController`. Dengan `ISP`, setiap `interface` hanya memiliki _method_ yang benar-benar dibutuhkan oleh _class_ yang menggunakannya. Misalnya, `CarService` dan `ProductService` memiliki `interface` terpisah sehingga perubahan di satu _service_ tidak memengaruhi _service_ lainnya. Hal ini mengurangi ketergantungan yang tidak perlu dan membuat _project_ lebih terorganisir.
+
+### 3. Explain the disadvantages of not applying SOLID principles to your project with examples.
+
+
+
+
