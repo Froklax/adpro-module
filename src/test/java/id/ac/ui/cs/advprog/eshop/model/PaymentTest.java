@@ -34,7 +34,7 @@ public class PaymentTest {
         paymentData.put("deliveryFee", "5000");
         Payment payment = new Payment(
                 "c23d45e6-f78g-901h-2345-i67j89k01lmn",
-                "by-cash-on-delivery",
+                "BY_CASH_ON_DELIVERY",
                 "SUCCESS",
                 paymentData
         );
@@ -48,7 +48,7 @@ public class PaymentTest {
         assertThrows(IllegalArgumentException.class, () -> {
             Payment payment = new Payment(
                     "d34e56f7-g89h-012i-3456-j78k90l12mno",
-                    "by-cash-on-delivery",
+                    "BY_CASH_ON_DELIVERY",
                     "INVALID_STATUS",
                     paymentData
             );
@@ -61,11 +61,11 @@ public class PaymentTest {
         paymentData.put("deliveryFee", "5000");
         Payment payment = new Payment(
                 "e45f67g8-h90i-123j-4567-k89l01m23nop",
-                "by-voucher",
+                "BY_VOUCHER",
                 "SUCCESS",
                 paymentData
         );
-        assertEquals("by-voucher", payment.getMethod());
+        assertEquals("BY_VOUCHER", payment.getMethod());
     }
 
     @Test
@@ -74,7 +74,7 @@ public class PaymentTest {
         paymentData.put("deliveryFee", "5000");
         Payment payment = new Payment(
                 "f56g78h9-i01j-234k-5678-l90m12n34opq",
-                "by-cash-on-delivery",
+                "BY_CASH_ON_DELIVERY",
                 "SUCCESS",
                 paymentData
         );
@@ -87,7 +87,7 @@ public class PaymentTest {
         paymentData.put("deliveryFee", "5000");
         Payment payment = new Payment(
                 "g67h89i0-j12k-345l-6789-m01n23o45pqr",
-                "by-cash-on-delivery",
+                "BY_CASH_ON_DELIVERY",
                 "SUCCESS",
                 paymentData
         );
