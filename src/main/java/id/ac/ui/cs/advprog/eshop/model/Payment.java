@@ -1,5 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import lombok.Getter;
 
 import java.util.Arrays;
@@ -20,18 +22,20 @@ public class Payment {
     }
 
     public void setStatus(String status) {
-        String[] statusList = {"SUCCESS", "REJECTED"};
-        if (Arrays.stream(statusList).noneMatch(status::equals)) {
-            throw new IllegalArgumentException("Invalid payment status: " + status);
+        if (PaymentStatus.contains(status)) {
+            this.status = status;
         }
-        this.status = status;
+        else {
+            throw new IllegalArgumentException();
+        }
     }
 
     public void setMethod(String method) {
-        String[] methodList = {"by-voucher", "by-cash-on-delivery"};
-        if (java.util.Arrays.stream(methodList).noneMatch(item -> item.equals(method))) {
-            throw new IllegalArgumentException("Invalid payment method: " + method);
+        if (PaymentMethod.contains(method)) {
+            this.method = method;
         }
-        this.method = method;
+        else {
+            throw new IllegalArgumentException();
+        }
     }
 }
