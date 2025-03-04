@@ -5,6 +5,7 @@ Link Deployment : https://missing-shrew-froklaxorg-d72833a5.koyeb.app/
 - [Refleksi Module 1](#module-1---coding-standards)
 - [Refleksi Module 2](#module-2---cicd--devops)
 - [Refleksi Module 3](#module-3---maintainability--oo-principles)
+- [Refleksi Module 4](#module-4---refactoring-and-tdd)
 
 # Module 1 - Coding Standards
 
@@ -78,4 +79,9 @@ Dengan menerapkan prinsip `SOLID`, kode saya menjadi lebih mudah untuk dikelola 
 
 Tanpa menerapkan prinsip `SOLID`, kode akan menjadi sulit untuk dikembangkan dan dikelola. Jika `CarController` tidak dipisahkan dari `ProductController`, maka setiap perubahan kecil pada salah satu bisa berdampak pada yang lain, meningkatkan kemungkinan muncul _bug_ dan _error_. Jika saya tetap menggunakan `CarServiceImpl` langsung di dalam `CarController`, maka setiap perubahan dalam implementasi _service_ akan mengharuskan saya memperbarui semua tempat di mana `CarServiceImpl` digunakan. Misalnya, jika ada perubahan besar dalam cara data `Car` disimpan, saya harus mengubah banyak bagian kode, yang bisa menyebabkan _error_ yang tidak terduga. Dengan menerapkan `SOLID`, perubahan dapat dilakukan dengan lebih aman dan terkontrol menurut saya.
 
+# Module 4 - Refactoring and TDD
 
+1. Saya merasa bahwa meskipun pendekatan TDD membantu memastikan fitur yang dikembangkan sesuai dengan spesifikasi, dalam pengerjaan sendiri alur TDD terkadang justru menghambat dan memperlambat proses _development_ karena menulis tes sebelum implementasi memaksa saya untuk memahami detail ketentuan secara mendalam, sehingga ketika terjadi perubahan kode saya harus melakukan penyesuaian besar pada tes yang telah dibuat. Tetapi TDD juga membantu saya beberapa kali ketika membuat kode, karena terdapat beberapa error yang terdeteksi oleh unit test yang sudah dibuat.  Ke depannya, saya mungkin akan mengeluarkan lebih banyak waktu dalam memahami spesifikasi aplikasi secara menyeluruh dan membuat tes yang lebih fleksibel agar tidak harus sering melakukan revisi besar pada tes ketika terjadi perubahan.
+
+
+2. Menurut saya, test yang saya buat sudah memenuhi prinsip F.I.R.S.T. karena telah mencakup skenario happy path maupun unhappy path, sehingga memastikan bahwa setiap fungsi berjalan sesuai dengan harapan ketika input valid maupun ketika terjadi kesalahan. Test-test tersebut berjalan dengan cepat, dapat diulang, terpisah satu sama lain, dan secara otomatis memberikan feedback melalui assertions, sehingga memudahkan proses debugging. Saya juga menyadari bahwa saya masih sering menulis test setelah implementasi selesai karena saya menyadari terdapatnya kesalahan dalam pembuatan test awal, yang menunjukkan bahwa aspek timely perlu diperbaiki ke depannya. Saya berencana untuk menulis test sejak tahap awal development agar semua kemungkinan skenario dapat tertangani dengan baik, mengurangi revisi kode untuk kedepannya, dan memastikan bahwa setiap kondisi telah tercakup secara baik.
