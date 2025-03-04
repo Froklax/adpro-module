@@ -43,7 +43,7 @@ public class PaymentRepositoryTest {
         paymentRepository.save(initialPayment);
 
         Payment updatedPayment = new Payment("id-002", "BY_VOUCHER", "REJECTED", paymentData2);
-        paymentRepository.save(updatedPayment);
+        paymentRepository.update(updatedPayment);
 
         Payment foundPayment = paymentRepository.findById("id-002");
         assertNotNull(foundPayment);
