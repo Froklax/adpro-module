@@ -1,5 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +25,7 @@ public class PaymentTest {
             Payment payment = new Payment(
                     "a12f34b5-c67d-890e-1234-f56g78h90ijk",
                     "by-ewallet",
-                    "SUCCESS",
+                    PaymentStatus.SUCCESS.getValue(),
                     paymentData);
         });
     }
@@ -34,11 +36,11 @@ public class PaymentTest {
         paymentData.put("deliveryFee", "5000");
         Payment payment = new Payment(
                 "c23d45e6-f78g-901h-2345-i67j89k01lmn",
-                "BY_CASH_ON_DELIVERY",
-                "SUCCESS",
+                PaymentMethod.BY_CASH_ON_DELIVERY.getValue(),
+                PaymentStatus.SUCCESS.getValue(),
                 paymentData
         );
-        assertEquals("SUCCESS", payment.getStatus());
+        assertEquals(PaymentStatus.SUCCESS.getValue(), payment.getStatus());
     }
 
     @Test
@@ -48,7 +50,7 @@ public class PaymentTest {
         assertThrows(IllegalArgumentException.class, () -> {
             Payment payment = new Payment(
                     "d34e56f7-g89h-012i-3456-j78k90l12mno",
-                    "BY_CASH_ON_DELIVERY",
+                    PaymentMethod.BY_CASH_ON_DELIVERY.getValue(),
                     "INVALID_STATUS",
                     paymentData
             );
@@ -61,11 +63,11 @@ public class PaymentTest {
         paymentData.put("deliveryFee", "5000");
         Payment payment = new Payment(
                 "e45f67g8-h90i-123j-4567-k89l01m23nop",
-                "BY_VOUCHER",
-                "SUCCESS",
+                PaymentMethod.BY_VOUCHER.getValue(),
+                PaymentStatus.SUCCESS.getValue(),
                 paymentData
         );
-        assertEquals("BY_VOUCHER", payment.getMethod());
+        assertEquals(PaymentMethod.BY_VOUCHER.getValue(), payment.getMethod());
     }
 
     @Test
@@ -74,8 +76,8 @@ public class PaymentTest {
         paymentData.put("deliveryFee", "5000");
         Payment payment = new Payment(
                 "f56g78h9-i01j-234k-5678-l90m12n34opq",
-                "BY_CASH_ON_DELIVERY",
-                "SUCCESS",
+                PaymentMethod.BY_CASH_ON_DELIVERY.getValue(),
+                PaymentStatus.SUCCESS.getValue(),
                 paymentData
         );
         assertThrows(IllegalArgumentException.class, () -> payment.setStatus("UNKNOWN_STATUS"));
@@ -87,11 +89,11 @@ public class PaymentTest {
         paymentData.put("deliveryFee", "5000");
         Payment payment = new Payment(
                 "g67h89i0-j12k-345l-6789-m01n23o45pqr",
-                "BY_CASH_ON_DELIVERY",
-                "SUCCESS",
+                PaymentMethod.BY_CASH_ON_DELIVERY.getValue(),
+                PaymentStatus.SUCCESS.getValue(),
                 paymentData
         );
-        payment.setStatus("REJECTED");
-        assertEquals("REJECTED", payment.getStatus());
+        payment.setStatus(PaymentStatus.REJECTED.getValue());
+        assertEquals(PaymentStatus.REJECTED.getValue(), payment.getStatus());
     }
 }
