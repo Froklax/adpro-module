@@ -10,5 +10,15 @@ public class PaymentByCash extends Payment {
 
     @Override
     public void setPaymentData(Map<String, String> paymentData) {
+        super.setPaymentData(paymentData);
+        setStatus(validatePaymentData(paymentData));
+    }
+
+    private static String validatePaymentData(Map<String, String> paymentData) {
+        if (paymentData == null || paymentData.get("address") == null || paymentData.get("address").isEmpty() ||
+                paymentData.get("deliveryFee") == null || paymentData.get("deliveryFee").isEmpty()) {
+            return PaymentStatus.REJECTED.getValue();
+        }
+        return PaymentStatus.SUCCESS.getValue();
     }
 }
